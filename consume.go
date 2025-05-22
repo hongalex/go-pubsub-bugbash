@@ -16,6 +16,7 @@ package bugbash
 
 import (
 	"context"
+	"fmt"
 	"log"
 	"time"
 
@@ -25,8 +26,9 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-const (
-	subID = "bugbash-sub"
+var (
+	subID       = "bugbash-sub"
+	fullSubName = fmt.Sprintf("projects/%s/subscriptions/%s", projectID, subID)
 )
 
 // Starts pulling messages from a subscription.

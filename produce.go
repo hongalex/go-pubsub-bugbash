@@ -16,6 +16,7 @@ package bugbash
 
 import (
 	"context"
+	"fmt"
 	"log"
 
 	// TODO: change this import
@@ -25,11 +26,12 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-const (
+var (
 	// TODO(developer): replace with your own project
 	projectID = "alxh-pubsub"
 
-	topicID = "bugbash-topic"
+	topicID       = "bugbash-topic"
+	fullTopicName = fmt.Sprintf("projects/%s/topics/%s", projectID, topicID)
 )
 
 func produceMessage(opts ...option.ClientOption) error {
@@ -40,7 +42,7 @@ func produceMessage(opts ...option.ClientOption) error {
 	}
 	defer c.Close()
 
-	// TODO: change this line
+	// TODO: change this function call, optionally change the variable too.
 	topic := c.Topic(topicID)
 
 	err = publishSingleMessage(ctx, topic)
@@ -68,7 +70,6 @@ func publishSingleMessage(ctx context.Context, topic *pubsub.Topic) error {
 	res := topic.Publish(ctx, &pubsub.Message{
 		Data: []byte("a single message"),
 	})
-	// The publish happens asynchronously.
 	_, err := res.Get(ctx)
 	return err
 }
