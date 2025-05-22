@@ -49,3 +49,10 @@ func TestConsume(t *testing.T) {
 		t.Fatal(err)
 	}
 }
+
+func TestAdmin(t *testing.T) {
+	_, opts := newFake(t)
+	if err := setupAdmin(opts...); err != nil {
+		t.Fatal(err)
+	}
+}

@@ -48,6 +48,15 @@ func consumeMessage(opts ...option.ClientOption) error {
 	ctx, cancel := context.WithTimeout(ctx, 10*time.Second)
 	defer cancel()
 
+	// TODO: change these settings
+	sub.ReceiveSettings = pubsub.ReceiveSettings{
+		MaxExtension:         30 * time.Minute,
+		MinExtensionPeriod:   1 * time.Minute,
+		MaxExtensionPeriod:   5 * time.Minute,
+		Synchronous:          true,
+		UseLegacyFlowControl: true,
+	}
+
 	err = sub.Receive(ctx, func(_ context.Context, msg *pubsub.Message) {
 		log.Printf("Got from existing subscription: %q\n", string(msg.Data))
 		msg.Ack()
