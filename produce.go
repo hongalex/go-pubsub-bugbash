@@ -20,7 +20,8 @@ import (
 	"log"
 
 	// TODO: change this import
-	"cloud.google.com/go/pubsub"
+	"cloud.google.com/go/pubsub/v2"
+	"cloud.google.com/go/pubsub/v2/apiv1/pubsubpb"
 	"google.golang.org/api/option"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -42,10 +43,9 @@ func produceMessage(opts ...option.ClientOption) error {
 	}
 	defer c.Close()
 
-	// TODO: change this function call, optionally change the variable too.
-	topic := c.Topic(topicID)
+	publisher := c.Publisher(topicID)
 
-	err = publishSingleMessage(ctx, topic)
+	err = publishSingleMessage(ctx, publisher)
 	if err != nil {
 		e, ok := status.FromError(err)
 		if !ok {
@@ -54,20 +54,21 @@ func produceMessage(opts ...option.ClientOption) error {
 		// If the publish failed because the topic doesn't exist
 		// create the topic and try publishing again.
 		if e.Code() == codes.NotFound {
-			// TODO: change this line
-			topic, err := c.CreateTopic(ctx, topicID)
+			_, err = c.TopicAdminClient.CreateTopic(ctx, &pubsubpb.Topic{
+				Name: fullTopicName,
+			})
 			if err != nil {
 				return err
 			}
-			return publishSingleMessage(ctx, topic)
+			return publishSingleMessage(ctx, publisher)
 		}
 	}
 	return err
 }
 
 // TODO: change argument
-func publishSingleMessage(ctx context.Context, topic *pubsub.Topic) error {
-	res := topic.Publish(ctx, &pubsub.Message{
+func publishSingleMessage(ctx context.Context, publisher *pubsub.Publisher) error {
+	res := publisher.Publish(ctx, &pubsub.Message{
 		Data: []byte("a single message"),
 	})
 	_, err := res.Get(ctx)

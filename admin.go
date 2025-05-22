@@ -20,8 +20,11 @@ import (
 	"time"
 
 	// TODO: change this import
-	"cloud.google.com/go/pubsub"
+	"cloud.google.com/go/pubsub/v2"
+	"cloud.google.com/go/pubsub/v2/apiv1/pubsubpb"
 	"google.golang.org/api/option"
+	"google.golang.org/protobuf/types/known/durationpb"
+	"google.golang.org/protobuf/types/known/fieldmaskpb"
 )
 
 func setupAdmin(opts ...option.ClientOption) error {
@@ -33,17 +36,20 @@ func setupAdmin(opts ...option.ClientOption) error {
 	defer c.Close()
 
 	// TODO: change all of the admin operations
-	topic, err := c.CreateTopicWithConfig(ctx, topicID, &pubsub.TopicConfig{
-		MessageStoragePolicy: pubsub.MessageStoragePolicy{
+	_, err = c.TopicAdminClient.CreateTopic(ctx, &pubsubpb.Topic{
+		Name: fullTopicName,
+		MessageStoragePolicy: &pubsubpb.MessageStoragePolicy{
 			AllowedPersistenceRegions: []string{"us-central1"},
 		},
-		RetentionDuration: 24 * time.Hour,
-		IngestionDataSourceSettings: &pubsub.IngestionDataSourceSettings{
-			Source: &pubsub.IngestionDataSourceAWSKinesis{
-				StreamARN:         "fake-stream-arn",
-				ConsumerARN:       "fake-consumer-arn",
-				AWSRoleARN:        "fake-aws-role-arn",
-				GCPServiceAccount: "fake-service-account",
+		MessageRetentionDuration: durationpb.New(24 * time.Hour),
+		IngestionDataSourceSettings: &pubsubpb.IngestionDataSourceSettings{
+			Source: &pubsubpb.IngestionDataSourceSettings_AwsKinesis_{
+				AwsKinesis: &pubsubpb.IngestionDataSourceSettings_AwsKinesis{
+					StreamArn:         "fake-stream-arn",
+					ConsumerArn:       "fake-consumer-arn",
+					AwsRoleArn:        "fake-aws-role-arn",
+					GcpServiceAccount: "fake-service-account",
+				},
 			},
 		},
 	})
@@ -52,7 +58,10 @@ func setupAdmin(opts ...option.ClientOption) error {
 	}
 
 	// TODO: change this call
-	_, err = c.CreateSubscription(ctx, subID, pubsub.SubscriptionConfig{Topic: topic})
+	_, err = c.SubscriptionAdminClient.CreateSubscription(ctx, &pubsubpb.Subscription{
+		Name:  fullSubName,
+		Topic: fullTopicName,
+	})
 	if err != nil {
 		return err
 	}
@@ -60,8 +69,14 @@ func setupAdmin(opts ...option.ClientOption) error {
 	// TODO: change this call
 	// We are removing ingestion from the topic and switching back to pull
 	// based topic instead.
-	_, err = topic.Update(ctx, pubsub.TopicConfigToUpdate{
-		IngestionDataSourceSettings: &pubsub.IngestionDataSourceSettings{},
+	_, err = c.TopicAdminClient.UpdateTopic(ctx, &pubsubpb.UpdateTopicRequest{
+		Topic: &pubsubpb.Topic{
+			Name:                        fullTopicName,
+			IngestionDataSourceSettings: &pubsubpb.IngestionDataSourceSettings{},
+		},
+		UpdateMask: &fieldmaskpb.FieldMask{
+			Paths: []string{"ingestion_data_source_settings"},
+		},
 	})
 	if err != nil {
 		return err
