@@ -16,18 +16,13 @@
 
 // Package pubsub aliases all exported identifiers in package
 // "cloud.google.com/go/pubsub/apiv1/pubsubpb".
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb.
-// Please read https://github.com/googleapis/google-cloud-go/blob/main/migration.md
-// for more details.
-package pubsub
+package pubsubpb
 
 import (
 	src "cloud.google.com/go/pubsub/apiv1/pubsubpb"
 	grpc "google.golang.org/grpc"
 )
 
-// Deprecated: Please use consts in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 const (
 	BigQueryConfig_ACTIVE                                                        = src.BigQueryConfig_ACTIVE
 	BigQueryConfig_IN_TRANSIT_LOCATION_RESTRICTION                               = src.BigQueryConfig_IN_TRANSIT_LOCATION_RESTRICTION
@@ -97,7 +92,6 @@ const (
 	Topic_STATE_UNSPECIFIED                                                      = src.Topic_STATE_UNSPECIFIED
 )
 
-// Deprecated: Please use vars in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 var (
 	BigQueryConfig_State_name                              = src.BigQueryConfig_State_name
 	BigQueryConfig_State_value                             = src.BigQueryConfig_State_value
@@ -130,181 +124,115 @@ var (
 )
 
 // Request for the Acknowledge method.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type AcknowledgeRequest = src.AcknowledgeRequest
 
 // Configuration for a BigQuery subscription.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type BigQueryConfig = src.BigQueryConfig
 
 // Possible states for a BigQuery subscription.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type BigQueryConfig_State = src.BigQueryConfig_State
 
 // Configuration for a Cloud Storage subscription.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type CloudStorageConfig = src.CloudStorageConfig
 
 // Configuration for writing message data in Avro format. Message payloads and
 // metadata will be written to files as an Avro binary.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type CloudStorageConfig_AvroConfig = src.CloudStorageConfig_AvroConfig
 type CloudStorageConfig_AvroConfig_ = src.CloudStorageConfig_AvroConfig_
 
 // Possible states for a Cloud Storage subscription.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type CloudStorageConfig_State = src.CloudStorageConfig_State
 
 // Configuration for writing message data in text format. Message payloads
 // will be written to files as raw text, separated by a newline.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type CloudStorageConfig_TextConfig = src.CloudStorageConfig_TextConfig
 type CloudStorageConfig_TextConfig_ = src.CloudStorageConfig_TextConfig_
 
 // Request for CommitSchema method.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type CommitSchemaRequest = src.CommitSchemaRequest
 
 // Request for the CreateSchema method.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type CreateSchemaRequest = src.CreateSchemaRequest
 
 // Request for the `CreateSnapshot` method.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type CreateSnapshotRequest = src.CreateSnapshotRequest
 
 // Dead lettering is done on a best effort basis. The same message might be
 // dead lettered multiple times. If validation on any of the fields fails at
 // subscription creation/updation, the create/update subscription request will
 // fail.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type DeadLetterPolicy = src.DeadLetterPolicy
 
 // Request for the `DeleteSchema` method.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type DeleteSchemaRequest = src.DeleteSchemaRequest
 
 // Request for the `DeleteSchemaRevision` method.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type DeleteSchemaRevisionRequest = src.DeleteSchemaRevisionRequest
 
 // Request for the `DeleteSnapshot` method.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type DeleteSnapshotRequest = src.DeleteSnapshotRequest
 
 // Request for the DeleteSubscription method.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type DeleteSubscriptionRequest = src.DeleteSubscriptionRequest
 
 // Request for the `DeleteTopic` method.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type DeleteTopicRequest = src.DeleteTopicRequest
 
 // Request for the DetachSubscription method.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type DetachSubscriptionRequest = src.DetachSubscriptionRequest
 
 // Response for the DetachSubscription method. Reserved for future use.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type DetachSubscriptionResponse = src.DetachSubscriptionResponse
 
 // Possible encoding types for messages.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type Encoding = src.Encoding
 
 // A policy that specifies the conditions for resource expiration (i.e.,
 // automatic resource deletion).
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type ExpirationPolicy = src.ExpirationPolicy
 
 // Request for the GetSchema method.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type GetSchemaRequest = src.GetSchemaRequest
 
 // Request for the GetSnapshot method.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type GetSnapshotRequest = src.GetSnapshotRequest
 
 // Request for the GetSubscription method.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type GetSubscriptionRequest = src.GetSubscriptionRequest
 
 // Request for the GetTopic method.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type GetTopicRequest = src.GetTopicRequest
 
 // Settings for an ingestion data source on a topic.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type IngestionDataSourceSettings = src.IngestionDataSourceSettings
 
 // Ingestion settings for Amazon Kinesis Data Streams.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type IngestionDataSourceSettings_AwsKinesis = src.IngestionDataSourceSettings_AwsKinesis
 type IngestionDataSourceSettings_AwsKinesis_ = src.IngestionDataSourceSettings_AwsKinesis_
 
 // Possible states for ingestion from Amazon Kinesis Data Streams.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type IngestionDataSourceSettings_AwsKinesis_State = src.IngestionDataSourceSettings_AwsKinesis_State
 
 // Ingestion settings for Amazon MSK.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type IngestionDataSourceSettings_AwsMsk = src.IngestionDataSourceSettings_AwsMsk
 type IngestionDataSourceSettings_AwsMsk_ = src.IngestionDataSourceSettings_AwsMsk_
 
 // Possible states for managed ingestion from Amazon MSK.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type IngestionDataSourceSettings_AwsMsk_State = src.IngestionDataSourceSettings_AwsMsk_State
 
 // Ingestion settings for Azure Event Hubs.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type IngestionDataSourceSettings_AzureEventHubs = src.IngestionDataSourceSettings_AzureEventHubs
 type IngestionDataSourceSettings_AzureEventHubs_ = src.IngestionDataSourceSettings_AzureEventHubs_
 
 // Possible states for managed ingestion from Event Hubs.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type IngestionDataSourceSettings_AzureEventHubs_State = src.IngestionDataSourceSettings_AzureEventHubs_State
 
 // Ingestion settings for Cloud Storage.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type IngestionDataSourceSettings_CloudStorage = src.IngestionDataSourceSettings_CloudStorage
 type IngestionDataSourceSettings_CloudStorage_ = src.IngestionDataSourceSettings_CloudStorage_
 
 // Configuration for reading Cloud Storage data in Avro binary format. The
 // bytes of each object will be set to the `data` field of a Pub/Sub message.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type IngestionDataSourceSettings_CloudStorage_AvroFormat = src.IngestionDataSourceSettings_CloudStorage_AvroFormat
 type IngestionDataSourceSettings_CloudStorage_AvroFormat_ = src.IngestionDataSourceSettings_CloudStorage_AvroFormat_
 
@@ -312,39 +240,27 @@ type IngestionDataSourceSettings_CloudStorage_AvroFormat_ = src.IngestionDataSou
 // subscriptions](https://cloud.google.com/pubsub/docs/cloudstorage). The data
 // and attributes fields of the originally exported Pub/Sub message will be
 // restored when publishing.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type IngestionDataSourceSettings_CloudStorage_PubSubAvroFormat = src.IngestionDataSourceSettings_CloudStorage_PubSubAvroFormat
 type IngestionDataSourceSettings_CloudStorage_PubsubAvroFormat = src.IngestionDataSourceSettings_CloudStorage_PubsubAvroFormat
 
 // Possible states for ingestion from Cloud Storage.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type IngestionDataSourceSettings_CloudStorage_State = src.IngestionDataSourceSettings_CloudStorage_State
 
 // Configuration for reading Cloud Storage data in text format. Each line of
 // text as specified by the delimiter will be set to the `data` field of a
 // Pub/Sub message.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type IngestionDataSourceSettings_CloudStorage_TextFormat = src.IngestionDataSourceSettings_CloudStorage_TextFormat
 type IngestionDataSourceSettings_CloudStorage_TextFormat_ = src.IngestionDataSourceSettings_CloudStorage_TextFormat_
 
 // Ingestion settings for Confluent Cloud.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type IngestionDataSourceSettings_ConfluentCloud = src.IngestionDataSourceSettings_ConfluentCloud
 type IngestionDataSourceSettings_ConfluentCloud_ = src.IngestionDataSourceSettings_ConfluentCloud_
 
 // Possible states for managed ingestion from Confluent Cloud.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type IngestionDataSourceSettings_ConfluentCloud_State = src.IngestionDataSourceSettings_ConfluentCloud_State
 
 // Payload of the Platform Log entry sent when a failure is encountered while
 // ingesting.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type IngestionFailureEvent = src.IngestionFailureEvent
 
 // Specifies the reason why some data may have been left out of the desired
@@ -355,33 +271,23 @@ type IngestionFailureEvent = src.IngestionFailureEvent
 // attribute limits are treated similarly. When the size of the desired message
 // would've been larger than 10MB, the message won't be published at all, and
 // ingestion of the subsequent messages will proceed as normal.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type IngestionFailureEvent_ApiViolationReason = src.IngestionFailureEvent_ApiViolationReason
 
 // Set when an Avro file is unsupported or its format is not valid. When this
 // occurs, one or more Avro objects won't be ingested.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type IngestionFailureEvent_AvroFailureReason = src.IngestionFailureEvent_AvroFailureReason
 type IngestionFailureEvent_AwsMskFailure = src.IngestionFailureEvent_AwsMskFailure
 
 // Failure when ingesting from an Amazon MSK source.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type IngestionFailureEvent_AwsMskFailureReason = src.IngestionFailureEvent_AwsMskFailureReason
 type IngestionFailureEvent_AwsMskFailureReason_ApiViolationReason = src.IngestionFailureEvent_AwsMskFailureReason_ApiViolationReason
 type IngestionFailureEvent_AzureEventHubsFailure = src.IngestionFailureEvent_AzureEventHubsFailure
 
 // Failure when ingesting from an Azure Event Hubs source.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type IngestionFailureEvent_AzureEventHubsFailureReason = src.IngestionFailureEvent_AzureEventHubsFailureReason
 type IngestionFailureEvent_AzureEventHubsFailureReason_ApiViolationReason = src.IngestionFailureEvent_AzureEventHubsFailureReason_ApiViolationReason
 
 // Failure when ingesting from a Cloud Storage source.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type IngestionFailureEvent_CloudStorageFailure = src.IngestionFailureEvent_CloudStorageFailure
 type IngestionFailureEvent_CloudStorageFailure_ = src.IngestionFailureEvent_CloudStorageFailure_
 type IngestionFailureEvent_CloudStorageFailure_ApiViolationReason = src.IngestionFailureEvent_CloudStorageFailure_ApiViolationReason
@@ -389,138 +295,86 @@ type IngestionFailureEvent_CloudStorageFailure_AvroFailureReason = src.Ingestion
 type IngestionFailureEvent_ConfluentCloudFailure = src.IngestionFailureEvent_ConfluentCloudFailure
 
 // Failure when ingesting from a Confluent Cloud source.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type IngestionFailureEvent_ConfluentCloudFailureReason = src.IngestionFailureEvent_ConfluentCloudFailureReason
 type IngestionFailureEvent_ConfluentCloudFailureReason_ApiViolationReason = src.IngestionFailureEvent_ConfluentCloudFailureReason_ApiViolationReason
 
 // User-defined JavaScript function that can transform or filter a Pub/Sub
 // message.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type JavaScriptUDF = src.JavaScriptUDF
 
 // Request for the `ListSchemaRevisions` method.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type ListSchemaRevisionsRequest = src.ListSchemaRevisionsRequest
 
 // Response for the `ListSchemaRevisions` method.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type ListSchemaRevisionsResponse = src.ListSchemaRevisionsResponse
 
 // Request for the `ListSchemas` method.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type ListSchemasRequest = src.ListSchemasRequest
 
 // Response for the `ListSchemas` method.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type ListSchemasResponse = src.ListSchemasResponse
 
 // Request for the `ListSnapshots` method.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type ListSnapshotsRequest = src.ListSnapshotsRequest
 
 // Response for the `ListSnapshots` method.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type ListSnapshotsResponse = src.ListSnapshotsResponse
 
 // Request for the `ListSubscriptions` method.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type ListSubscriptionsRequest = src.ListSubscriptionsRequest
 
 // Response for the `ListSubscriptions` method.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type ListSubscriptionsResponse = src.ListSubscriptionsResponse
 
 // Request for the `ListTopicSnapshots` method.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type ListTopicSnapshotsRequest = src.ListTopicSnapshotsRequest
 
 // Response for the `ListTopicSnapshots` method.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type ListTopicSnapshotsResponse = src.ListTopicSnapshotsResponse
 
 // Request for the `ListTopicSubscriptions` method.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type ListTopicSubscriptionsRequest = src.ListTopicSubscriptionsRequest
 
 // Response for the `ListTopicSubscriptions` method.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type ListTopicSubscriptionsResponse = src.ListTopicSubscriptionsResponse
 
 // Request for the `ListTopics` method.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type ListTopicsRequest = src.ListTopicsRequest
 
 // Response for the `ListTopics` method.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type ListTopicsResponse = src.ListTopicsResponse
 
 // A policy constraining the storage of messages published to the topic.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type MessageStoragePolicy = src.MessageStoragePolicy
 
 // All supported message transforms types.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type MessageTransform = src.MessageTransform
 type MessageTransform_JavascriptUdf = src.MessageTransform_JavascriptUdf
 
 // Request for the ModifyAckDeadline method.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type ModifyAckDeadlineRequest = src.ModifyAckDeadlineRequest
 
 // Request for the ModifyPushConfig method.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type ModifyPushConfigRequest = src.ModifyPushConfigRequest
 
 // Settings for Platform Logs produced by Pub/Sub.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type PlatformLogsSettings = src.PlatformLogsSettings
 
 // Severity levels of Platform Logs.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type PlatformLogsSettings_Severity = src.PlatformLogsSettings_Severity
 
 // Request for the Publish method.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type PublishRequest = src.PublishRequest
 
 // Response for the `Publish` method.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type PublishResponse = src.PublishResponse
 
 // PublisherClient is the client API for Publisher service. For semantics
 // around ctx use and closing/ending streaming RPCs, please refer to
 // https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type PublisherClient = src.PublisherClient
 
 // PublisherServer is the server API for Publisher service.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type PublisherServer = src.PublisherServer
 
 // A message that is published by publishers and consumed by subscribers. The
@@ -531,49 +385,33 @@ type PublisherServer = src.PublisherServer
 // more information. See [quotas and limits]
 // (https://cloud.google.com/pubsub/quotas) for more information about message
 // limits.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type PubsubMessage = src.PubsubMessage
 
 // Request for the `Pull` method.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type PullRequest = src.PullRequest
 
 // Response for the `Pull` method.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type PullResponse = src.PullResponse
 
 // Configuration for a push delivery endpoint.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type PushConfig = src.PushConfig
 
 // Sets the `data` field as the HTTP body for delivery.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type PushConfig_NoWrapper = src.PushConfig_NoWrapper
 type PushConfig_NoWrapper_ = src.PushConfig_NoWrapper_
 
 // Contains information needed for generating an [OpenID Connect
 // token](https://developers.google.com/identity/protocols/OpenIDConnect).
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type PushConfig_OidcToken = src.PushConfig_OidcToken
 type PushConfig_OidcToken_ = src.PushConfig_OidcToken_
 
 // The payload to the push endpoint is in the form of the JSON representation
 // of a PubsubMessage
 // (https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#pubsubmessage).
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type PushConfig_PubsubWrapper = src.PushConfig_PubsubWrapper
 type PushConfig_PubsubWrapper_ = src.PushConfig_PubsubWrapper_
 
 // A message and its corresponding acknowledgment ID.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type ReceivedMessage = src.ReceivedMessage
 
 // A policy that specifies how Pub/Sub retries message delivery. Retry delay
@@ -583,57 +421,37 @@ type ReceivedMessage = src.ReceivedMessage
 // message. Retry Policy is implemented on a best effort basis. At times, the
 // delay between consecutive deliveries may not match the configuration. That
 // is, delay can be more or less than configured backoff.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type RetryPolicy = src.RetryPolicy
 
 // Request for the `RollbackSchema` method.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type RollbackSchemaRequest = src.RollbackSchemaRequest
 
 // A schema resource.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type Schema = src.Schema
 
 // SchemaServiceClient is the client API for SchemaService service. For
 // semantics around ctx use and closing/ending streaming RPCs, please refer to
 // https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type SchemaServiceClient = src.SchemaServiceClient
 
 // SchemaServiceServer is the server API for SchemaService service.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type SchemaServiceServer = src.SchemaServiceServer
 
 // Settings for validating messages published against a schema.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type SchemaSettings = src.SchemaSettings
 
 // View of Schema object fields to be returned by GetSchema and ListSchemas.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type SchemaView = src.SchemaView
 
 // Possible schema definition types.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type Schema_Type = src.Schema_Type
 
 // Request for the `Seek` method.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type SeekRequest = src.SeekRequest
 type SeekRequest_Snapshot = src.SeekRequest_Snapshot
 type SeekRequest_Time = src.SeekRequest_Time
 
 // Response for the `Seek` method (this response is empty).
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type SeekResponse = src.SeekResponse
 
 // A snapshot resource. Snapshots are used in
@@ -641,50 +459,34 @@ type SeekResponse = src.SeekResponse
 // which allow you to manage message acknowledgments in bulk. That is, you can
 // set the acknowledgment state of messages in an existing subscription to the
 // state captured by a snapshot.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type Snapshot = src.Snapshot
 
 // Request for the `StreamingPull` streaming RPC method. This request is used
 // to establish the initial stream as well as to stream acknowledgements and
 // ack deadline modifications from the client to the server.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type StreamingPullRequest = src.StreamingPullRequest
 
 // Response for the `StreamingPull` method. This response is used to stream
 // messages from the server to the client.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type StreamingPullResponse = src.StreamingPullResponse
 
 // Acknowledgement IDs sent in one or more previous requests to acknowledge a
 // previously received message.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type StreamingPullResponse_AcknowledgeConfirmation = src.StreamingPullResponse_AcknowledgeConfirmation
 
 // Acknowledgement IDs sent in one or more previous requests to modify the
 // deadline for a specific message.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type StreamingPullResponse_ModifyAckDeadlineConfirmation = src.StreamingPullResponse_ModifyAckDeadlineConfirmation
 
 // Subscription properties sent as part of the response.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type StreamingPullResponse_SubscriptionProperties = src.StreamingPullResponse_SubscriptionProperties
 
 // SubscriberClient is the client API for Subscriber service. For semantics
 // around ctx use and closing/ending streaming RPCs, please refer to
 // https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type SubscriberClient = src.SubscriberClient
 
 // SubscriberServer is the server API for Subscriber service.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type SubscriberServer = src.SubscriberServer
 type Subscriber_StreamingPullClient = src.Subscriber_StreamingPullClient
 type Subscriber_StreamingPullServer = src.Subscriber_StreamingPullServer
@@ -692,84 +494,54 @@ type Subscriber_StreamingPullServer = src.Subscriber_StreamingPullServer
 // A subscription resource. If none of `push_config`, `bigquery_config`, or
 // `cloud_storage_config` is set, then the subscriber will pull and ack
 // messages using API methods. At most one of these fields may be set.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type Subscription = src.Subscription
 
 // Information about an associated [Analytics Hub
 // subscription](https://cloud.google.com/bigquery/docs/analytics-hub-manage-subscriptions).
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type Subscription_AnalyticsHubSubscriptionInfo = src.Subscription_AnalyticsHubSubscriptionInfo
 
 // Possible states for a subscription.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type Subscription_State = src.Subscription_State
 
 // A topic resource.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type Topic = src.Topic
 
 // The state of the topic.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type Topic_State = src.Topic_State
 
 // UnimplementedPublisherServer can be embedded to have forward compatible
 // implementations.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type UnimplementedPublisherServer = src.UnimplementedPublisherServer
 
 // UnimplementedSchemaServiceServer can be embedded to have forward compatible
 // implementations.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type UnimplementedSchemaServiceServer = src.UnimplementedSchemaServiceServer
 
 // UnimplementedSubscriberServer can be embedded to have forward compatible
 // implementations.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type UnimplementedSubscriberServer = src.UnimplementedSubscriberServer
 
 // Request for the UpdateSnapshot method.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type UpdateSnapshotRequest = src.UpdateSnapshotRequest
 
 // Request for the UpdateSubscription method.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type UpdateSubscriptionRequest = src.UpdateSubscriptionRequest
 
 // Request for the UpdateTopic method.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type UpdateTopicRequest = src.UpdateTopicRequest
 
 // Request for the `ValidateMessage` method.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type ValidateMessageRequest = src.ValidateMessageRequest
 type ValidateMessageRequest_Name = src.ValidateMessageRequest_Name
 type ValidateMessageRequest_Schema = src.ValidateMessageRequest_Schema
 
 // Response for the `ValidateMessage` method. Empty for now.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type ValidateMessageResponse = src.ValidateMessageResponse
 
 // Request for the `ValidateSchema` method.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type ValidateSchemaRequest = src.ValidateSchemaRequest
 
 // Response for the `ValidateSchema` method. Empty for now.
-//
-// Deprecated: Please use types in: cloud.google.com/go/pubsub/apiv1/pubsubpb
 type ValidateSchemaResponse = src.ValidateSchemaResponse
 
 // Deprecated: Please use funcs in: cloud.google.com/go/pubsub/apiv1/pubsubpb
