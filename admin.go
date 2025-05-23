@@ -52,7 +52,14 @@ func setupAdmin(opts ...option.ClientOption) error {
 	}
 
 	// TODO: change this call
-	_, err = c.CreateSubscription(ctx, subID, pubsub.SubscriptionConfig{Topic: topic})
+	_, err = c.CreateSubscription(ctx, subID, pubsub.SubscriptionConfig{
+		Topic:                     topic,
+		EnableExactlyOnceDelivery: true,
+		ExpirationPolicy:          10 * time.Hour,
+		BigQueryConfig: pubsub.BigQueryConfig{
+			Table: "fake-project.fake-dataset.fake-table-id",
+		},
+	})
 	if err != nil {
 		return err
 	}
