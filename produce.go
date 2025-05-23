@@ -27,8 +27,7 @@ import (
 )
 
 var (
-	// TODO(developer): replace with your own project
-	projectID = "alxh-pubsub"
+	projectID = "fake-gcp-project"
 
 	topicID       = "bugbash-topic"
 	fullTopicName = fmt.Sprintf("projects/%s/topics/%s", projectID, topicID)
