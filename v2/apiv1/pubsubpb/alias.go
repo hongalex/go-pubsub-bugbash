@@ -299,10 +299,6 @@ type IngestionFailureEvent_ConfluentCloudFailure = src.IngestionFailureEvent_Con
 type IngestionFailureEvent_ConfluentCloudFailureReason = src.IngestionFailureEvent_ConfluentCloudFailureReason
 type IngestionFailureEvent_ConfluentCloudFailureReason_ApiViolationReason = src.IngestionFailureEvent_ConfluentCloudFailureReason_ApiViolationReason
 
-// User-defined JavaScript function that can transform or filter a Pub/Sub
-// message
-type JavaScriptUDF = src.JavaScriptUDF
-
 // Request for the `ListSchemaRevisions` method
 type ListSchemaRevisionsRequest = src.ListSchemaRevisionsRequest
 
@@ -347,10 +343,6 @@ type ListTopicsResponse = src.ListTopicsResponse
 
 // A policy constraining the storage of messages published to the topic
 type MessageStoragePolicy = src.MessageStoragePolicy
-
-// All supported message transforms types
-type MessageTransform = src.MessageTransform
-type MessageTransform_JavascriptUdf = src.MessageTransform_JavascriptUdf
 
 // Request for the ModifyAckDeadline method
 type ModifyAckDeadlineRequest = src.ModifyAckDeadlineRequest
