@@ -45,6 +45,10 @@ func TestConsume(t *testing.T) {
 	fake, opts := newFake(t)
 	fullTopicName := fmt.Sprintf("projects/%s/topics/%s", projectID, topicID)
 	fake.Publish(fullTopicName, []byte("a"), nil)
+
+	// NOTE: this doesn't actually test if a message is pulled. Because
+	// we publish the messages before the subscription is created
+	// we won't log anything here.
 	if err := consumeMessage(opts...); err != nil {
 		t.Fatal(err)
 	}
