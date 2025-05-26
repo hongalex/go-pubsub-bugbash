@@ -85,5 +85,20 @@ func setupAdmin(opts ...option.ClientOption) error {
 	if err != nil {
 		return err
 	}
+
+	// TODO: change this call
+	if err := c.TopicAdminClient.DeleteTopic(ctx, &pubsubpb.DeleteTopicRequest{
+		Topic: fullTopicName,
+	}); err != nil {
+		return err
+	}
+
+	// TODO: change this call
+	if err := c.SubscriptionAdminClient.DeleteSubscription(ctx, &pubsubpb.DeleteSubscriptionRequest{
+		Subscription: fullSubName,
+	}); err != nil {
+		return err
+	}
+
 	return nil
 }
