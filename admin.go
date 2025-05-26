@@ -52,7 +52,7 @@ func setupAdmin(opts ...option.ClientOption) error {
 	}
 
 	// TODO: change this call
-	_, err = c.CreateSubscription(ctx, subID, pubsub.SubscriptionConfig{
+	sub, err := c.CreateSubscription(ctx, subID, pubsub.SubscriptionConfig{
 		Topic:                     topic,
 		EnableExactlyOnceDelivery: true,
 		BigQueryConfig: pubsub.BigQueryConfig{
@@ -72,5 +72,16 @@ func setupAdmin(opts ...option.ClientOption) error {
 	if err != nil {
 		return err
 	}
+
+	// TODO: change this call
+	if err := topic.Delete(ctx); err != nil {
+		return err
+	}
+
+	// TODO: change this call
+	if err := sub.Delete(ctx); err != nil {
+		return err
+	}
+
 	return nil
 }
