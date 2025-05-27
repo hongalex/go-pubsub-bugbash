@@ -1,6 +1,6 @@
 # Migrating from Go PubSub v1 to v2
 
-This page summarizes the changes needed to migrate from `cloud.google.com/go` (aka "the v1 library") to `cloud.google.com/go/pubsub/v2` (aka "the v2 library"). In line with Google's [OSS Library Breaking Change Policy](https://opensource.google/documentation/policies/library-breaking-change), we plan to support the existing v1 package for 12 months, until **March 1st, 2026**. This includes a commitment to bug and security patches for the v1 library, but it will not receive new features. We encourage all users to migrate to the new v2 library by the above date.
+This page summarizes the changes needed to migrate from `cloud.google.com/go` (aka "the v1 library") to `cloud.google.com/go/pubsub/v2` (aka "the v2 library"). In line with Google's [OSS Library Breaking Change Policy](https://opensource.google/documentation/policies/library-breaking-change), we plan to support the existing v1 package for 12 months, until **June 31st, 2026**. This includes a commitment to bug and security patches for the v1 library, but it will not receive new features. We encourage all users to migrate to the new v2 library by the above date.
 
 Note that this is a major version bump that includes breaking changes for the Go library specifically, but the Pub/Sub API (as defined by the [proto file](https://github.com/googleapis/googleapis/blob/master/google/pubsub/v1/pubsub.proto)) is remaining the same.
 
