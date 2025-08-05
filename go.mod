@@ -43,5 +43,3 @@ require (
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20250519155744-55703ea1f237 // indirect
 	google.golang.org/protobuf v1.36.6 // indirect
 )
-
-replace cloud.google.com/go/pubsub/v2 => ./v2
