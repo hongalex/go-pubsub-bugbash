@@ -16,15 +16,12 @@ package bugbash
 
 import (
 	"context"
-	"fmt"
 	"log"
 	"time"
 
-	"cloud.google.com/go/pubsub/v2"
-	"cloud.google.com/go/pubsub/v2/apiv1/pubsubpb"
+	// TODO: change this import
+	"cloud.google.com/go/pubsub"
 	"google.golang.org/api/option"
-	"google.golang.org/protobuf/types/known/durationpb"
-	"google.golang.org/protobuf/types/known/fieldmaskpb"
 )
 
 func setupAdmin(opts ...option.ClientOption) error {
@@ -35,21 +32,18 @@ func setupAdmin(opts ...option.ClientOption) error {
 	}
 	defer c.Close()
 
-	topicPath := fmt.Sprintf("projects/%s/topics/%s", projectID, topicID)
-	topic, err := c.TopicAdminClient.CreateTopic(ctx, &pubsubpb.Topic{
-		Name: topicPath,
-		MessageStoragePolicy: &pubsubpb.MessageStoragePolicy{
+	// TODO: change all of the admin operations
+	topic, err := c.CreateTopicWithConfig(ctx, topicID, &pubsub.TopicConfig{
+		MessageStoragePolicy: pubsub.MessageStoragePolicy{
 			AllowedPersistenceRegions: []string{"us-central1"},
 		},
-		MessageRetentionDuration: durationpb.New(24 * time.Hour),
-		IngestionDataSourceSettings: &pubsubpb.IngestionDataSourceSettings{
-			Source: &pubsubpb.IngestionDataSourceSettings_AwsKinesis_{
-				AwsKinesis: &pubsubpb.IngestionDataSourceSettings_AwsKinesis{
-					StreamArn:         "fake-stream-arn",
-					ConsumerArn:       "fake-consumer-arn",
-					AwsRoleArn:        "fake-aws-role-arn",
-					GcpServiceAccount: "fake-service-account",
-				},
+		RetentionDuration: 24 * time.Hour,
+		IngestionDataSourceSettings: &pubsub.IngestionDataSourceSettings{
+			Source: &pubsub.IngestionDataSourceAWSKinesis{
+				StreamARN:         "fake-stream-arn",
+				ConsumerARN:       "fake-consumer-arn",
+				AWSRoleARN:        "fake-aws-role-arn",
+				GCPServiceAccount: "fake-service-account",
 			},
 		},
 	})
@@ -57,12 +51,11 @@ func setupAdmin(opts ...option.ClientOption) error {
 		return err
 	}
 
-	subPath := fmt.Sprintf("projects/%s/subscriptions/%s", projectID, subID)
-	sub, err := c.SubscriptionAdminClient.CreateSubscription(ctx, &pubsubpb.Subscription{
-		Name:                      subPath,
-		Topic:                     topicPath,
+	// TODO: change this call
+	sub, err := c.CreateSubscription(ctx, subID, pubsub.SubscriptionConfig{
+		Topic:                     topic,
 		EnableExactlyOnceDelivery: true,
-		BigqueryConfig: &pubsubpb.BigQueryConfig{
+		BigQueryConfig: pubsub.BigQueryConfig{
 			Table: "fake-project.fake-dataset.fake-table-id",
 		},
 	})
@@ -70,30 +63,23 @@ func setupAdmin(opts ...option.ClientOption) error {
 		return err
 	}
 
+	// TODO: change this call
 	// We are removing ingestion from the topic and switching back to pull
 	// based topic instead.
-	_, err = c.TopicAdminClient.UpdateTopic(ctx, &pubsubpb.UpdateTopicRequest{
-		Topic: &pubsubpb.Topic{
-			Name:                        topicPath,
-			IngestionDataSourceSettings: &pubsubpb.IngestionDataSourceSettings{},
-		},
-		UpdateMask: &fieldmaskpb.FieldMask{
-			Paths: []string{"ingestion_data_source_settings"},
-		},
+	_, err = topic.Update(ctx, pubsub.TopicConfigToUpdate{
+		IngestionDataSourceSettings: &pubsub.IngestionDataSourceSettings{},
 	})
 	if err != nil {
 		return err
 	}
 
-	if err := c.TopicAdminClient.DeleteTopic(ctx, &pubsubpb.DeleteTopicRequest{
-		Topic: topic.Name,
-	}); err != nil {
+	// TODO: change this call
+	if err := topic.Delete(ctx); err != nil {
 		return err
 	}
 
-	if err := c.SubscriptionAdminClient.DeleteSubscription(ctx, &pubsubpb.DeleteSubscriptionRequest{
-		Subscription: sub.Name,
-	}); err != nil {
+	// TODO: change this call
+	if err := sub.Delete(ctx); err != nil {
 		return err
 	}
 

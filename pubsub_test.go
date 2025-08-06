@@ -18,7 +18,7 @@ import (
 	"fmt"
 	"testing"
 
-	pstest "cloud.google.com/go/pubsub/v2/pstest"
+	pstest "cloud.google.com/go/pubsub/pstest"
 	"google.golang.org/api/option"
 	"google.golang.org/grpc"
 )

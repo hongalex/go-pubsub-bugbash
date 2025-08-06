@@ -20,8 +20,7 @@ import (
 	"log"
 	"time"
 
-	"cloud.google.com/go/pubsub/v2"
-	"cloud.google.com/go/pubsub/v2/apiv1/pubsubpb"
+	"cloud.google.com/go/pubsub"
 	"google.golang.org/api/option"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -42,7 +41,8 @@ func consumeMessage(opts ...option.ClientOption) error {
 	}
 	defer client.Close()
 
-	sub := client.Subscriber(subID)
+	// TODO: change this line
+	sub := client.Subscription(subID)
 
 	// Receive messages for 10 seconds, which simplifies testing.
 	// Comment this out in production, since `Receive` should
@@ -50,9 +50,13 @@ func consumeMessage(opts ...option.ClientOption) error {
 	ctx, cancel := context.WithTimeout(ctx, 10*time.Second)
 	defer cancel()
 
+	// TODO: change these settings
 	sub.ReceiveSettings = pubsub.ReceiveSettings{
-		MinDurationPerAckExtension: 1 * time.Minute,
-		MaxDurationPerAckExtension: 5 * time.Minute,
+		MaxExtension:         30 * time.Minute,
+		MinExtensionPeriod:   1 * time.Minute,
+		MaxExtensionPeriod:   5 * time.Minute,
+		Synchronous:          true,
+		UseLegacyFlowControl: true,
 	}
 
 	err = sub.Receive(ctx, func(_ context.Context, msg *pubsub.Message) {
@@ -65,9 +69,9 @@ func consumeMessage(opts ...option.ClientOption) error {
 			return err
 		}
 		if st.Code() == codes.NotFound {
-			s, err := client.SubscriptionAdminClient.CreateSubscription(ctx, &pubsubpb.Subscription{
-				Name:  fullSubName,
-				Topic: fmt.Sprintf("projects/%s/topics/%s", projectID, topicID),
+			// TODO: change this function invocation.
+			s, err := client.CreateSubscription(ctx, subID, pubsub.SubscriptionConfig{
+				Topic: client.Topic(topicID),
 			})
 			if err != nil {
 				return err
@@ -76,7 +80,7 @@ func consumeMessage(opts ...option.ClientOption) error {
 			// Pull from the new subscription.
 			ctx2, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 			defer cancel()
-			client.Subscriber(s.Name).Receive(ctx2, func(_ context.Context, msg *pubsub.Message) {
+			s.Receive(ctx2, func(_ context.Context, msg *pubsub.Message) {
 				log.Printf("Got from new subscriber: %q\n", string(msg.Data))
 				msg.Ack()
 			})
